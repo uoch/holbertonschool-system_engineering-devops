@@ -1,0 +1,39 @@
+1-User accessing the website:
+The user wants to access the website by typing "www.foobar.com" in their web browser.
+
+2-Server:
+A server is a computer system or a software program that provides services or resources to other computers, known as clients, over a network. In this case, our server will handle incoming requests from the user and respond with the requested web pages.
+
+3-Domain Name:
+The domain name serves as a human-readable address for websites. In our case, "foobar.com" is the domain name. The role of the domain name is to provide a memorable and meaningful name that can be used to access the website instead of remembering the server's IP address.
+
+4-DNS Record:
+The www in "www.foobar.com" is a subdomain that stands for "World Wide Web." It is a commonly used convention to indicate that the website is accessible via a web browser. The www record is a DNS (Domain Name System) record type known as a CNAME (Canonical Name) record. It points to the server's IP address (8.8.8.8 in this case), allowing users to reach the website by entering "www.foobar.com" in their browser.
+
+5-Web Server (Nginx):
+The web server's role is to handle HTTP requests and deliver web content (HTML, CSS, JavaScript, images, etc.) to clients. In our infrastructure, we'll use Nginx as the web server. It will receive incoming requests from the user, forward them to the appropriate application server, and send back the corresponding web pages.
+
+6-Application Server:
+The application server hosts the application code. It is responsible for processing the user's requests, executing the necessary logic, and generating dynamic web content. In our case, we'll use an application server that supports the desired programming language/framework for our codebase.
+
+7-Application Files:
+The application files consist of the codebase of the website. They include the necessary scripts, templates, stylesheets, and other assets that make up the web application.
+
+8-Database (MySQL):
+The database is used to store and manage the website's data. In this infrastructure, we'll utilize MySQL as the database system. It will store and retrieve data required by the web application, such as user accounts, blog posts, or any other relevant information.
+
+9-Server-User Communication:
+To communicate with the user's computer, the server uses the HTTP (Hypertext Transfer Protocol) protocol. When the user requests a webpage, the server receives the HTTP request, processes it, retrieves the necessary data from the application and database servers, generates an appropriate HTTP response, and sends it back to the user's computer.
+
+Issues with this Infrastructure:
+
+a. Single Point of Failure (SPOF):
+Since we have a single server hosting the entire infrastructure, it becomes a single point of failure. If the server goes down or encounters any issues, the website becomes inaccessible until the server is fixed or brought back online.
+
+b. Downtime during Maintenance:
+Performing maintenance tasks, such as deploying new code or restarting the web server, can result in downtime. During this period, the website may not be accessible to users until the maintenance is completed.
+
+c. Scalability Limitations:
+With this setup, scaling the infrastructure to handle a high volume of incoming traffic becomes challenging. As traffic increases, a single server may struggle to handle the load efficiently, leading to slower response times or even server overload.
+
+To address these issues, one possible solution is to introduce additional servers for load balancing, redundancy, and scalability. However, based on the given requirements, we're limited to a one-server infrastructure.
