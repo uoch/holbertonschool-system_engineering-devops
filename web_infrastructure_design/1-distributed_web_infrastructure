@@ -1,0 +1,50 @@
+Design of Three-Server Web Infrastructure for www.foobar.com
+
+Components:
+
+Load Balancer (HAproxy)
+Web Server (Nginx)
+Application Server
+Database (MySQL)
+Server Configuration:
+
+Server 1: Load Balancer and Web Server
+Server 2: Application Server
+Server 3: Database (Primary node)
+Load Balancer (HAproxy):
+
+The load balancer distributes incoming traffic across multiple servers to ensure scalability, fault tolerance, and optimal resource utilization.
+The load balancer is configured with a Round Robin distribution algorithm, where each incoming request is forwarded to the next available server in a cyclic manner.
+Round Robin algorithm ensures that the workload is evenly distributed among the servers.
+Active-Active vs. Active-Passive Setup:
+
+In this infrastructure, the load balancer enables an Active-Passive setup.
+Active-Passive setup means that the load balancer directs all the traffic to the active server, while the passive server remains idle, ready to take over if the active server fails.
+This setup provides high availability but does not utilize the passive server unless a failover occurs.
+Database Primary-Replica (Master-Slave) Cluster:
+
+The database consists of a Primary node and a Replica node, forming a Primary-Replica (Master-Slave) cluster.
+The Primary node is Server 3 in this infrastructure and acts as the main read-write node for the database.
+The Replica node is a copy of the Primary node and is kept in sync with it by replicating the data changes.
+The Replica node (Slave) can be used for read operations but cannot accept write operations directly.
+Difference between Primary and Replica Nodes:
+
+The Primary node is responsible for handling both read and write operations, making it the authoritative source for data modifications.
+The Replica node synchronizes its data with the Primary node and can be used for read operations, offloading read traffic from the Primary node.
+In the application, read operations can be distributed between the Primary and Replica nodes, providing better read scalability and performance.
+Issues with the Infrastructure:
+
+Single Points of Failure (SPOF):
+
+The infrastructure lacks redundancy for the load balancer, web server, application server, and database.
+If any of these components fail, the website www.foobar.com will experience downtime or service disruption.
+To address this, additional servers and components can be added with proper redundancy and failover mechanisms.
+Security Issues:
+
+The infrastructure lacks a firewall to protect the servers from unauthorized access or malicious attacks.
+Additionally, there is no implementation of HTTPS (TLS/SSL) for secure communication between clients and servers.
+Implementing a firewall and enabling HTTPS are crucial for enhancing the security of the infrastructure and protecting sensitive data.
+Lack of Monitoring:
+
+The infrastructure does not include any monitoring system to track the health, performance, and availability of servers and services.
+Monitoring tools should be implemented to provide visibility into the infrastructure, detect issues, and enable proactive troubleshooting.
