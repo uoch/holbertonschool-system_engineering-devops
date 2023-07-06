@@ -1,0 +1,49 @@
+Design of Secured and Monitored Three-Server Web Infrastructure for www.foobar.com
+
+Components:
+
+Load Balancer (LB)
+Web Server (Nginx)
+Application Server
+Database (MySQL)
+Server Configuration:
+
+Server 1: Load Balancer, Firewall, SSL Certificate, Monitoring Client
+Server 2: Web Server, Firewall, Monitoring Client
+Server 3: Application Server, Firewall, Monitoring Client
+Database Server: MySQL (Primary and Replica nodes)
+Firewalls:
+
+Three firewalls are added to enhance the security of the infrastructure.
+Firewalls control incoming and outgoing network traffic based on predetermined security rules, protecting the servers from unauthorized access and potential threats.
+SSL Certificate and Serving Traffic over HTTPS:
+
+An SSL certificate is added to enable secure communication over HTTPS.
+HTTPS encrypts the traffic between clients and servers, ensuring the confidentiality and integrity of sensitive data transmitted over the network.
+Serving traffic over HTTPS is crucial for securing user data, preventing eavesdropping, and protecting against tampering or impersonation.
+Monitoring:
+
+Three monitoring clients are deployed to collect data and monitor the infrastructure's health, performance, and availability.
+Monitoring allows proactive detection of issues, performance bottlenecks, and potential failures.
+The monitoring tool collects data by periodically querying the servers, collecting system metrics, log files, and custom application-specific data.
+Monitoring Web Server QPS:
+
+To monitor the web server's queries per second (QPS), the monitoring tool can collect the web server's access logs or query the web server's API or log files.
+By analyzing the QPS data over time, it is possible to identify usage patterns, peak loads, and potential performance issues.
+Issues with the Infrastructure:
+
+Terminating SSL at the Load Balancer:
+
+Terminating SSL at the load balancer means that the SSL decryption and encryption happen at the load balancer, not the web servers.
+This can be an issue if there is sensitive data exchanged between the load balancer and the web servers.
+To address this, end-to-end SSL encryption can be implemented, where SSL termination occurs at the web servers instead of the load balancer.
+Single MySQL Server for Writes:
+
+Having only one MySQL server capable of accepting writes creates a single point of failure.
+If the MySQL server fails, the application will not be able to write data, causing service disruption.
+Implementing a high availability solution, such as a MySQL cluster with multiple nodes capable of handling writes, can address this issue.
+Identical Components on Servers:
+
+Having servers with identical components (database, web server, and application server) might be a problem in terms of scalability and resource allocation.
+Different components have different resource requirements, and scaling them independently can optimize performance and resource utilization.
+Separating the components onto dedicated servers can provide better scalability, isolation, and flexibility in managing the infrastructure.
